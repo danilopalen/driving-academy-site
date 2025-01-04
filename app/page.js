@@ -4,11 +4,11 @@ import React from "react";
 import { Shield, Clock, Award, Car } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import class1 from "../public/images/class1.jpg";
-import class2 from "../public/images/class2.jpg";
+import class1 from "../public/images/Class1pic.jpg";
+import class2 from "../public/images/class2pic.jpg";
 import class3 from "../public/images/class3.png";
 import busPic from "../public/images/Double-Decker-Bus.jpg";
-import class5 from "../public/images/class5.png";
+import class5 from "../public/images/class5pic.jpg";
 
 const LandingPage = () => {
   const router = useRouter();
@@ -249,7 +249,7 @@ const LandingPage = () => {
         .course-image {
           width: 100%;
           height: 200px;
-          object-fit: contain;
+          object-fit: cover;
         }
 
         .course-content {
