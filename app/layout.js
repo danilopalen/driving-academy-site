@@ -3,6 +3,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { useState } from "react";
+import logo from "../public/images/logo2.png";
+import Image from "next/image";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -183,9 +186,12 @@ export default function RootLayout({ children }) {
 
           <nav className="nav">
             <div className="nav-content">
-              <a href="/" className="nav-brand">
+              <Link href="/">
+                <Image src={logo} alt="JDM Logo" width="50" height="50" />
+              </Link>
+              {/* <a href="/" className="nav-brand">
                 JDM Driving Academy
-              </a>
+              </a> */}
 
               <div className="nav-menu">
                 <div className="nav-group">
