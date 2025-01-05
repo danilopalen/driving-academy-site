@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import AreaModal from "../_components/areaModal";
+import AreaModal from "../_components/AreaModal";
 import {
   Clock,
   CheckCircle,
