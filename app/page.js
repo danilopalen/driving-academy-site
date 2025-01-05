@@ -9,6 +9,8 @@ import class2 from "../public/images/class2pic.jpg";
 import class3 from "../public/images/class3.png";
 import busPic from "../public/images/Double-Decker-Bus.jpg";
 import class5 from "../public/images/class5pic.jpg";
+import class6 from "../public/images/class6.png";
+import Link from "next/link";
 
 const LandingPage = () => {
   const router = useRouter();
@@ -52,6 +54,14 @@ const LandingPage = () => {
       duration: "1 hour",
       imageUrl: class5,
       url: "/class5",
+    },
+    {
+      title: "Class 6",
+      description: "Driving lesson",
+      price: "Coming Soon",
+      duration: "",
+      imageUrl: class6,
+      url: "",
     },
   ];
 
@@ -327,8 +337,10 @@ const LandingPage = () => {
               professional instructors who care about your success.
             </p>
             <div className="button-group">
-              <button className="button button-primary">Book a Lesson</button>
-              <button className="button button-secondary">Learn More</button>
+              <button className="button button-primary">
+                <Link href="/book">Book a Lesson</Link>
+              </button>
+              {/* <button className="button button-secondary">Learn More</button> */}
             </div>
           </div>
         </div>

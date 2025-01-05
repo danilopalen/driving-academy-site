@@ -1,7 +1,18 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import AreaModal from "../_components/areaModal";
 import { Clock, CheckCircle, AlertCircle, Truck } from "lucide-react";
 
 const Class4Page = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleClose = () => setIsOpen(false);
+  const handleContinue = () => {
+    setIsOpen(false);
+  };
+  const handleBookNow = () => {
+    setIsOpen(true);
+  };
+
   return (
     <div className="page">
       <style>
@@ -198,6 +209,13 @@ const Class4Page = () => {
       </style>
 
       <div className="container">
+        {isOpen && (
+          <AreaModal
+            isOpen={isOpen}
+            onClose={handleClose}
+            onContinue={handleContinue}
+          />
+        )}
         <header className="header">
           <h1 className="title">
             <Truck className="title-icon" size={32} />
@@ -228,7 +246,7 @@ const Class4Page = () => {
                 <span className="price">$130</span>
               </div>
               <div className="price-info">
-                <span>With Own Truck</span>
+                <span>With Your Own Truck</span>
                 <span className="price">$100</span>
               </div>
               <div className="price-note">
@@ -303,7 +321,7 @@ const Class4Page = () => {
         </div>
 
         <div style={{ textAlign: "center" }}>
-          <button className="book-button">
+          <button className="book-button" onClick={handleBookNow}>
             Book Now
             <Truck size={20} />
           </button>

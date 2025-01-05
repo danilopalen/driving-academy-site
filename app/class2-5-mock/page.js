@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import AreaModal from "../_components/areaModal";
 import {
   Clock,
   CheckCircle,
@@ -8,6 +10,15 @@ import {
 } from "lucide-react";
 
 const Class2To5MockTest = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleClose = () => setIsOpen(false);
+  const handleContinue = () => {
+    setIsOpen(false);
+  };
+  const handleBookNow = () => {
+    setIsOpen(true);
+  };
+
   return (
     <div className="page">
       <style>
@@ -180,6 +191,13 @@ const Class2To5MockTest = () => {
       </style>
 
       <div className="container">
+        {isOpen && (
+          <AreaModal
+            isOpen={isOpen}
+            onClose={handleClose}
+            onContinue={handleContinue}
+          />
+        )}
         <header className="header">
           <h1 className="title">
             <ClipboardCheck className="title-icon" size={32} />
@@ -296,7 +314,7 @@ const Class2To5MockTest = () => {
         </div>
 
         <div style={{ textAlign: "center" }}>
-          <button className="book-button">
+          <button className="book-button" onClick={handleBookNow}>
             Book Now
             <ClipboardCheck size={20} />
           </button>

@@ -225,13 +225,13 @@ export default function RootLayout({ children }) {
                   <span className="nav-label">Packages</span>
                   <div className="nav-dropdown">
                     <a href="/class1-package" className="nav-item">
-                      Class 1 - 5 Hour Package
+                      Class 1 - 5 Hours Package
                     </a>
                     <a href="/class1-2hour" className="nav-item">
-                      Class 1 - 2 Hour Lesson
+                      Class 1 - 2 Hours Lesson
                     </a>
                     <a href="/class2-package" className="nav-item">
-                      Class 2 - 5 Hour Package
+                      Class 2 - 5 Hours Package
                     </a>
                   </div>
                 </div>

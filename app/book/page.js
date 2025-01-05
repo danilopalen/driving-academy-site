@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import BookingCalendar from "../_components/BookingCalendar";
 // Color palette with better contrast ratios
 const colors = {
   primary: "#1a56db", // Darker blue for better contrast
@@ -233,28 +234,64 @@ const BookingSystem = () => {
 
   const services = [
     {
-      id: "class-a",
-      name: "Class A License",
-      description: "For motorcycles and scooters",
-      price: "$299",
-    },
-    {
-      id: "class-b",
-      name: "Class B License",
+      id: "class-1",
+      name: "Class 1 License",
       description: "For cars and light vehicles",
-      price: "$499",
+      price: "$75 (1hour) including GST",
     },
     {
-      id: "mock-test",
-      name: "Mock Test",
-      description: "Practice test before the actual exam",
-      price: "$99",
+      id: "class-2",
+      name: "Class 2 License",
+      description: "For 2-axle truck or small looking truck or 2T or 4T truck",
+      price: "$120 (1hour) including GST",
     },
     {
-      id: "package-complete",
-      name: "Complete Package",
-      description: "Includes theory, practical sessions, and mock tests",
-      price: "$799",
+      id: "class-3",
+      name: "Class 3 License",
+      description: "For medium combination truck and trailer",
+      price: "$125 (1hour) including GST",
+    },
+    {
+      id: "class-4",
+      name: "Class 4 License",
+      description: "For vehicles with double axles at the rear or a truck",
+      price: "$130 (1hour) including GST",
+    },
+    {
+      id: "class-5",
+      name: "Class 5 License",
+      description: "For semi-trailer or full trailer truck",
+      price: "$140 (1hour) including GST",
+    },
+    {
+      id: "class-1-mock",
+      name: "Class 1 Mock Test",
+      description: "Restricted or Full license mock test",
+      price: "$75 per hour including GST",
+    },
+    {
+      id: "class-1-2hours",
+      name: "Class 1 - 2 Hours Lesson",
+      description: "2 Hours Lesson",
+      price: "$140 (1hour) including GST",
+    },
+    {
+      id: "class-1-5hours",
+      name: "Class 1 - 5 Hours Package",
+      description: "5 Hours Package",
+      price: "$340 (1hour) including GST",
+    },
+    {
+      id: "class-2-5-mock",
+      name: "Class 2 - 5 Mock Test",
+      description: "Full license mock test",
+      price: "$120 - $140 including GST",
+    },
+    {
+      id: "class-2-5hours",
+      name: "Class 2 - 5 Hours Package",
+      description: "5 lesson package (Class 2. Total of 5 hours)",
+      price: "$500 including GST",
     },
   ];
 
@@ -349,13 +386,19 @@ const BookingSystem = () => {
         <p style={styles.subtitle}>Choose your preferred date</p>
       </div>
       <div style={styles.inputGroup}>
-        <input
+        <BookingCalendar
+          selectedDate={selectedDate}
+          selectedTime={selectedTime}
+          setSelectedTime={setSelectedTime}
+          setSelectedDate={setSelectedDate}
+        />
+        {/* <input
           type="date"
           value={selectedDate}
           onChange={(e) => handleDateSelect(e.target.value)}
           min={new Date().toISOString().split("T")[0]}
           style={styles.input}
-        />
+        /> */}
       </div>
     </div>
   );
@@ -363,13 +406,11 @@ const BookingSystem = () => {
   const renderStep3 = () => (
     <div>
       <div style={styles.header}>
-        <h2 style={styles.title}>Select Time & Enter Details</h2>
-        <p style={styles.subtitle}>
-          Choose your preferred time and provide your information
-        </p>
+        <h2 style={styles.title}>Enter Details</h2>
+        <p style={styles.subtitle}>Provide your information</p>
       </div>
 
-      <div style={styles.inputGroup}>
+      {/* <div style={styles.inputGroup}>
         <label style={styles.label}>Available Time Slots</label>
         <div style={styles.timeGrid}>
           {timeSlots.map((time) => (
@@ -385,7 +426,7 @@ const BookingSystem = () => {
             </button>
           ))}
         </div>
-      </div>
+      </div> */}
 
       <div>
         <div style={styles.inputGroup}>
