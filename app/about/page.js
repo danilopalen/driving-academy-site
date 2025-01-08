@@ -1,5 +1,7 @@
 import React from "react";
 import { Clock, Shield, Heart, Phone, Award, Car } from "lucide-react";
+import Image from "next/image";
+import Yuta from "../../public/images/IMG_8689.jpg";
 
 const AboutPage = () => {
   return (
@@ -234,10 +236,12 @@ const AboutPage = () => {
       <section className="instructor-section">
         <div className="container">
           <div className="instructor-grid">
-            <img
-              src="/api/placeholder/400/400"
+            <Image
+              src={Yuta}
               alt="Instructor Yuta"
               className="instructor-image"
+              width="500"
+              height="500"
             />
             <div className="instructor-content">
               <div>
