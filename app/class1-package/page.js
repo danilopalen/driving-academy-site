@@ -312,7 +312,7 @@ const Class1Package = () => {
             <div className="warning-notice">
               <p>WE DO NOT HAVE A MANUAL DRIVING SCHOOL CAR</p>
               <p style={{ fontSize: "0.9rem", marginTop: "0.5rem" }}>
-                Manual lessons can be taken in students' vehicles
+                Manual lessons can be taken in the student's vehicle.
               </p>
             </div>
 

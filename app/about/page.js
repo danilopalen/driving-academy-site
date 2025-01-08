@@ -201,7 +201,7 @@ const AboutPage = () => {
             </div>
             <h3 className="feature-title">Professional & Accredited</h3>
             <p className="feature-text">
-              Fully accredited, insured, and National Police Checked instructors
+              Fully accredited, insured, and national police checked instructors
               ensuring your safety and peace of mind.
             </p>
           </div>
@@ -224,7 +224,8 @@ const AboutPage = () => {
             <h3 className="feature-title">Student-Focused Approach</h3>
             <p className="feature-text">
               Friendly, calm, and patient instructors who treat every student
-              with respect and understanding.
+              with respect and understanding. We will ensure you receive all the
+              help and support needed to achieve your driving goals.
             </p>
           </div>
         </div>
@@ -261,19 +262,19 @@ const AboutPage = () => {
                 <div className="qualification-list">
                   <div className="qualification-item">
                     <Award size={16} />
-                    <span>Class 1-6 Licenses</span>
+                    <span>Class 1 to 6 Full Licenses</span>
                   </div>
                   <div className="qualification-item">
                     <Award size={16} />
-                    <span>Wheels & Trucks</span>
+                    <span>Wheels and Trucks Endorsement</span>
                   </div>
                   <div className="qualification-item">
                     <Award size={16} />
-                    <span>Rollers & Forklifts</span>
+                    <span>Rollers and Forklifts Endorsement</span>
                   </div>
                   <div className="qualification-item">
                     <Award size={16} />
-                    <span>Dangerous Goods</span>
+                    <span>Dangerous Goods Endorsement</span>
                   </div>
                   <div className="qualification-item">
                     <Award size={16} />
@@ -281,7 +282,11 @@ const AboutPage = () => {
                   </div>
                   <div className="qualification-item">
                     <Award size={16} />
-                    <span>Vehicle Recovery</span>
+                    <span>Vehicle Recovery Endorsement</span>
+                  </div>
+                  <div className="qualification-item">
+                    <Award size={16} />
+                    <span>Passenger Endorsement</span>
                   </div>
                 </div>
               </div>
@@ -307,8 +312,7 @@ const AboutPage = () => {
         <div className="container">
           <h2 className="title">Ready for Your Driving Journey?</h2>
           <p className="subtitle">
-            Let's work together to achieve your driving goals in a fun and
-            productive environment.
+            Let's work together to achieve your driving goals!
           </p>
           <div
             style={{ display: "flex", gap: "1rem", justifyContent: "center" }}

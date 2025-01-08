@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { ref, onValue } from "firebase/database";
+import { db } from "../firebase";
+const bookingCountRef = ref(db, "bookings/");
 
 const BookingCalendar = ({
   selectedDate,
@@ -8,15 +11,30 @@ const BookingCalendar = ({
 }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
+  const [data, setData] = useState(undefined);
+  console.log("🚀 ~ data:", data);
+  useEffect(() => {
+    onValue(bookingCountRef, (snapshot) => {
+      const arr = [];
+      const values = snapshot.val();
+      for (const key in values) {
+        if (Object.prototype.hasOwnProperty.call(values, key)) {
+          const element = values[key];
+          arr.push(element);
+        }
+      }
+      setData(arr);
+    });
+  }, []);
 
-  const timeSlots = [
-    { time: "09:00", disabled: true },
+  const [timeSlots, setTimeSlots] = useState([
+    { time: "09:00", disabled: false },
     { time: "10:00", disabled: false },
     { time: "11:00", disabled: false },
     { time: "13:00", disabled: false },
-    { time: "14:00", disabled: true },
-    { time: "15:00", disabled: true },
-  ];
+    { time: "14:00", disabled: false },
+    { time: "15:00", disabled: false },
+  ]);
 
   const daysInMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
@@ -27,7 +45,6 @@ const BookingCalendar = ({
   };
 
   const isValidDay = (date) => {
-    console.log("🚀 ~ isValidDay ~ date:", date);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
@@ -66,6 +83,27 @@ const BookingCalendar = ({
 
   const handleDateSelect = (date) => {
     if (date && isValidDay(date)) {
+      console.log("🚀 ~ handleDateSelect ~ date:", date.toString());
+      if (data && data.length > 0) {
+        const bookings = data.filter((el) => el.date === date.toString());
+        console.log("🚀 ~ handleDateSelect ~ bookings:", bookings);
+        if (bookings.length > 0) {
+          setTimeSlots((prev) => {
+            const newTimeSlots = prev.map((time) => {
+              if (bookings.some((i) => i.time === time.time)) {
+                return { ...time, disabled: true };
+              }
+              return { ...time, disabled: false };
+            });
+            console.log("🚀 ~ newTimeSlots ~ newTimeSlots:", newTimeSlots);
+            return newTimeSlots;
+          });
+        } else {
+          setTimeSlots((prev) =>
+            prev.map((el) => ({ ...el, disabled: false }))
+          );
+        }
+      }
       setSelectedDate(date);
       setSelectedTime(null);
       setBookingConfirmed(false);

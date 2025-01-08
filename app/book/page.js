@@ -2,6 +2,14 @@
 
 import React, { useState } from "react";
 import BookingCalendar from "../_components/BookingCalendar";
+import { writeUserData } from "../firebase";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutPage from "../_components/CeckoutPage";
+import convertToSubcurrency from "../lib/convertToSubcurrency";
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+);
 // Color palette with better contrast ratios
 const colors = {
   primary: "#1a56db", // Darker blue for better contrast
@@ -238,60 +246,70 @@ const BookingSystem = () => {
       name: "Class 1 License",
       description: "For cars and light vehicles",
       price: "$75 (1hour) including GST",
+      amount: 75,
     },
     {
       id: "class-2",
       name: "Class 2 License",
       description: "For 2-axle truck or small looking truck or 2T or 4T truck",
       price: "$120 (1hour) including GST",
+      amount: 120,
     },
     {
       id: "class-3",
       name: "Class 3 License",
       description: "For medium combination truck and trailer",
       price: "$125 (1hour) including GST",
+      amount: 125,
     },
     {
       id: "class-4",
       name: "Class 4 License",
       description: "For vehicles with double axles at the rear or a truck",
       price: "$130 (1hour) including GST",
+      amount: 130,
     },
     {
       id: "class-5",
       name: "Class 5 License",
       description: "For semi-trailer or full trailer truck",
       price: "$140 (1hour) including GST",
+      amount: 140,
     },
     {
       id: "class-1-mock",
       name: "Class 1 Mock Test",
       description: "Restricted or Full license mock test",
       price: "$75 per hour including GST",
+      amount: 75,
     },
     {
       id: "class-1-2hours",
       name: "Class 1 - 2 Hours Lesson",
       description: "2 Hours Lesson",
       price: "$140 (1hour) including GST",
+      amount: 140,
     },
     {
       id: "class-1-5hours",
       name: "Class 1 - 5 Hours Package",
       description: "5 Hours Package",
       price: "$340 (1hour) including GST",
+      amount: 340,
     },
     {
       id: "class-2-5-mock",
       name: "Class 2 - 5 Mock Test",
       description: "Full license mock test",
       price: "$120 - $140 including GST",
+      amount: 140,
     },
     {
       id: "class-2-5hours",
       name: "Class 2 - 5 Hours Package",
       description: "5 lesson package (Class 2. Total of 5 hours)",
       price: "$500 including GST",
+      amount: 500,
     },
   ];
 
@@ -310,14 +328,6 @@ const BookingSystem = () => {
     setSelectedOption(value);
   };
 
-  const handleDateSelect = (date) => {
-    setSelectedDate(date);
-  };
-
-  const handleTimeSelect = (time) => {
-    setSelectedTime(time);
-  };
-
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -328,12 +338,13 @@ const BookingSystem = () => {
   const handleSubmit = () => {
     const bookingData = {
       service: selectedOption,
-      date: selectedDate,
+      date: selectedDate.toString(),
       time: selectedTime,
-      customerDetails: formData,
+      ...formData,
     };
     console.log("Booking submitted:", bookingData);
-    setStep(4);
+    writeUserData(bookingData);
+    setStep(5);
   };
 
   const renderStep1 = () => (
@@ -392,13 +403,6 @@ const BookingSystem = () => {
           setSelectedTime={setSelectedTime}
           setSelectedDate={setSelectedDate}
         />
-        {/* <input
-          type="date"
-          value={selectedDate}
-          onChange={(e) => handleDateSelect(e.target.value)}
-          min={new Date().toISOString().split("T")[0]}
-          style={styles.input}
-        /> */}
       </div>
     </div>
   );
@@ -409,25 +413,6 @@ const BookingSystem = () => {
         <h2 style={styles.title}>Enter Details</h2>
         <p style={styles.subtitle}>Provide your information</p>
       </div>
-
-      {/* <div style={styles.inputGroup}>
-        <label style={styles.label}>Available Time Slots</label>
-        <div style={styles.timeGrid}>
-          {timeSlots.map((time) => (
-            <button
-              key={time}
-              onClick={() => handleTimeSelect(time)}
-              style={{
-                ...styles.timeButton,
-                ...(selectedTime === time && styles.timeButtonSelected),
-              }}
-            >
-              {time}
-            </button>
-          ))}
-        </div>
-      </div> */}
-
       <div>
         <div style={styles.inputGroup}>
           <label style={styles.label}>Full Name</label>
@@ -483,6 +468,29 @@ const BookingSystem = () => {
   const renderStep4 = () => (
     <div>
       <div style={styles.header}>
+        <h2 style={styles.title}>Payment Details</h2>
+      </div>
+      <Elements
+        stripe={stripePromise}
+        options={{
+          mode: "payment",
+          amount: convertToSubcurrency(
+            services.find((s) => s.id === selectedOption)?.amount
+          ),
+          currency: "nzd",
+        }}
+      >
+        <CheckoutPage
+          amount={services.find((s) => s.id === selectedOption)?.amount}
+          handleSubmit={handleSubmit}
+        />
+      </Elements>
+    </div>
+  );
+
+  const renderStep5 = () => (
+    <div>
+      <div style={styles.header}>
         <h2 style={styles.title}>Booking Confirmed!</h2>
         <p style={styles.subtitle}>
           Your booking has been successfully confirmed
@@ -499,7 +507,7 @@ const BookingSystem = () => {
           Booking Details:
         </h3>
         <p>Service: {services.find((s) => s.id === selectedOption)?.name}</p>
-        <p>Date: {selectedDate}</p>
+        <p>Date: {selectedDate.toString()}</p>
         <p>Time: {selectedTime}</p>
         <p>Name: {formData.name}</p>
         <p>Email: {formData.email}</p>
@@ -512,10 +520,9 @@ const BookingSystem = () => {
       case 1:
         return selectedOption !== "";
       case 2:
-        return selectedDate !== "";
+        return selectedDate !== "" && selectedTime !== "";
       case 3:
         return (
-          selectedTime !== "" &&
           formData.name !== "" &&
           formData.email !== "" &&
           formData.phone !== "" &&
@@ -543,10 +550,10 @@ const BookingSystem = () => {
       <div style={styles.container}>
         {/* Progress indicator */}
         <div style={styles.progressBar}>
-          {[1, 2, 3].map((number) => (
+          {[1, 2, 3, 4].map((number) => (
             <div key={number} style={styles.progressStep}>
               <div style={getStepStyle(number)}>{number}</div>
-              {number < 3 && <div style={getLineStyle(number)} />}
+              {number < 4 && <div style={getLineStyle(number)} />}
             </div>
           ))}
         </div>
@@ -557,10 +564,11 @@ const BookingSystem = () => {
           {step === 2 && renderStep2()}
           {step === 3 && renderStep3()}
           {step === 4 && renderStep4()}
+          {step === 5 && renderStep5()}
         </div>
 
         {/* Navigation buttons */}
-        {step < 4 && (
+        {step < 5 && (
           <div style={styles.navigation}>
             {step > 1 && (
               <button
@@ -571,21 +579,10 @@ const BookingSystem = () => {
               </button>
             )}
             <div style={{ flex: 1 }} />
-            {step < 3 ? (
-              <button
-                onClick={() => setStep(step + 1)}
-                disabled={!canProceed()}
-                style={{
-                  ...styles.button,
-                  ...(canProceed() ? styles.nextButton : styles.disabledButton),
-                }}
-              >
-                Next
-              </button>
-            ) : (
-              step === 3 && (
+            {
+              step < 4 ? (
                 <button
-                  onClick={handleSubmit}
+                  onClick={() => setStep(step + 1)}
                   disabled={!canProceed()}
                   style={{
                     ...styles.button,
@@ -594,10 +591,24 @@ const BookingSystem = () => {
                       : styles.disabledButton),
                   }}
                 >
-                  Confirm Booking
+                  Next
                 </button>
-              )
-            )}
+              ) : null
+              // step === 4 && (
+              //   <button
+              //     onClick={handleSubmit}
+              //     disabled={!canProceed()}
+              //     style={{
+              //       ...styles.button,
+              //       ...(canProceed()
+              //         ? styles.nextButton
+              //         : styles.disabledButton),
+              //     }}
+              //   >
+              //     Confirm Booking
+              //   </button>
+              // )
+            }
           </div>
         )}
       </div>
