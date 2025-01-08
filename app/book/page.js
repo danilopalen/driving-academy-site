@@ -335,16 +335,35 @@ const BookingSystem = () => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const bookingData = {
-      service: selectedOption,
+      service: services.find((s) => s.id === selectedOption)?.name,
       date: selectedDate.toString(),
       time: selectedTime,
       ...formData,
     };
     console.log("Booking submitted:", bookingData);
     writeUserData(bookingData);
-    setStep(5);
+
+    try {
+      const response = await fetch("/api/bookings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStep(5);
+      } else {
+        throw new Error(data.message || "Failed to process booking");
+      }
+    } catch (error) {
+      console.log("🚀 ~ handleSubmit ~ error:", error.message);
+    }
   };
 
   const renderStep1 = () => (
