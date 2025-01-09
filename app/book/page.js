@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import BookingCalendar from "../_components/BookingCalendar";
 import { writeUserData } from "../firebase";
@@ -913,4 +914,11 @@ const BookingSystem = () => {
   );
 };
 
-export default BookingSystem;
+const Book = () => {
+  return (
+    <Suspense>
+      <BookingSystem />
+    </Suspense>
+  );
+};
+export default Book;
