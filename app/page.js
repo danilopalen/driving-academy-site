@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import class1 from "../public/images/Class1pic.jpg";
 import class2 from "../public/images/class2pic.jpg";
-import class3 from "../public/images/class3.png";
+import class3 from "../public/images/Untitled.jpeg";
 import busPic from "../public/images/Class4truck.jpg";
 import class5 from "../public/images/class5bus.jpg";
 import class6 from "../public/images/class6.png";

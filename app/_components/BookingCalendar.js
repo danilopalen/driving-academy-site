@@ -2,7 +2,37 @@ import React, { useEffect, useState } from "react";
 import { ref, onValue } from "firebase/database";
 import { db } from "../firebase";
 const bookingCountRef = ref(db, "bookings/");
+const WEEKDAYTIME = [
+  { time: "07:00", timeLabel: "07:00 AM", disabled: false },
+  { time: "08:00", timeLabel: "08:00 AM", disabled: false },
+  { time: "09:00", timeLabel: "09:00 AM", disabled: false },
+  { time: "10:00", timeLabel: "10:00 AM", disabled: false },
+  { time: "11:00", timeLabel: "11:00 AM", disabled: false },
+  { time: "12:00", timeLabel: "12:00 PM", disabled: false },
+  { time: "13:00", timeLabel: "01:00 PM", disabled: false },
+  { time: "14:00", timeLabel: "02:00 PM", disabled: false },
+  { time: "15:00", timeLabel: "03:00 PM", disabled: false },
+  { time: "16:00", timeLabel: "04:00 PM", disabled: false },
+  { time: "17:00", timeLabel: "05:00 PM", disabled: false },
+  { time: "18:00", timeLabel: "06:00 PM", disabled: false },
+  { time: "19:00", timeLabel: "07:00 PM", disabled: false },
+  { time: "20:00", timeLabel: "08:00 PM", disabled: false },
+];
 
+const WEEKENDTIME = [
+  { time: "09:00", timeLabel: "09:00 AM", disabled: false },
+  { time: "10:00", timeLabel: "10:00 AM", disabled: false },
+  { time: "11:00", timeLabel: "11:00 AM", disabled: false },
+  { time: "12:00", timeLabel: "12:00 PM", disabled: false },
+  { time: "13:00", timeLabel: "01:00 PM", disabled: false },
+  { time: "14:00", timeLabel: "02:00 PM", disabled: false },
+  { time: "15:00", timeLabel: "03:00 PM", disabled: false },
+  { time: "16:00", timeLabel: "04:00 PM", disabled: false },
+  { time: "17:00", timeLabel: "05:00 PM", disabled: false },
+  { time: "18:00", timeLabel: "06:00 PM", disabled: false },
+  { time: "19:00", timeLabel: "07:00 PM", disabled: false },
+  { time: "20:00", timeLabel: "08:00 PM", disabled: false },
+];
 const BookingCalendar = ({
   selectedDate,
   setSelectedDate,
@@ -28,14 +58,15 @@ const BookingCalendar = ({
     });
   }, []);
 
-  const [timeSlots, setTimeSlots] = useState([
-    { time: "09:00", disabled: false },
-    { time: "10:00", disabled: false },
-    { time: "11:00", disabled: false },
-    { time: "13:00", disabled: false },
-    { time: "14:00", disabled: false },
-    { time: "15:00", disabled: false },
-  ]);
+  const [timeSlots, setTimeSlots] = useState(WEEKDAYTIME);
+
+  useEffect(() => {
+    if (validDays?.includes(0) || validDays?.includes(6)) {
+      setTimeSlots(WEEKENDTIME);
+    } else {
+      setTimeSlots(WEEKDAYTIME);
+    }
+  }, [validDays]);
 
   const daysInMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
@@ -56,8 +87,6 @@ const BookingCalendar = ({
 
     // Check if it's Monday-Thursday
     const day = date.getDay();
-    console.log("🚀 ~ isValidDay ~ validDays:", validDays);
-    console.log("🚀 ~ isValidDay ~ day:", day);
     // return day >= 1 && day <= 4;
     return validDays.includes(day);
   };
@@ -324,7 +353,7 @@ const BookingCalendar = ({
         <div>
           <h3>Select Time</h3>
           <div style={styles.timeGrid}>
-            {timeSlots.map(({ time, disabled }) => (
+            {timeSlots.map(({ time, timeLabel, disabled }) => (
               <button
                 disabled={disabled}
                 key={time}
@@ -350,7 +379,7 @@ const BookingCalendar = ({
                   }
                 }}
               >
-                {time}
+                {timeLabel}
               </button>
             ))}
           </div>

@@ -1,9 +1,14 @@
+"use client";
+
 import React from "react";
-import { Clock, Shield, Heart, Phone, Award, Car } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Clock, Shield, Heart, Phone, Award, Car, Mail } from "lucide-react";
 import Image from "next/image";
 import Yuta from "../../public/images/IMG_8689.jpg";
 
 const AboutPage = () => {
+  const router = useRouter();
+
   return (
     <div className="page">
       <style>
@@ -143,6 +148,8 @@ const AboutPage = () => {
             border-radius: 1rem;
             padding: 2rem;
             margin-top: 2rem;
+            display: flex;
+            gap: 2rem
           }
 
           .hours-title {
@@ -298,14 +305,29 @@ const AboutPage = () => {
           </div>
 
           <div className="hours-card">
-            <h3 className="hours-title">
-              <Clock size={24} />
-              Operating Hours
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <p className="feature-text">Weekdays: 7 AM - 8 PM</p>
-                <p className="feature-text">Weekends: 9 AM - 8 PM</p>
+            <div>
+              <h3 className="hours-title">
+                <Clock size={24} />
+                Operating Hours
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <p className="feature-text">Weekdays: 7 AM - 8 PM</p>
+                  <p className="feature-text">Weekends: 9 AM - 8 PM</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 className="hours-title">
+                <Mail size={24} />
+                Email
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <p className="feature-text">
+                    jdmdrivingschoolauckland@gmail.com
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -325,7 +347,10 @@ const AboutPage = () => {
               <Phone size={20} />
               Contact: 02041753791
             </a>
-            <button className="contact-button">
+            <button
+              className="contact-button"
+              onClick={() => router.push("/book")}
+            >
               Book Now
               <Car size={20} />
             </button>

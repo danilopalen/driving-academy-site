@@ -7,6 +7,7 @@ import centralcbd from "../../public/images/centralcbd.png";
 import centraleast from "../../public/images/centraleast.png";
 import centralwest from "../../public/images/centralwest.png";
 import eastauckland from "../../public/images/eastauckland.png";
+import { X } from "lucide-react";
 
 const AREAS = [
   {
@@ -53,7 +54,10 @@ const AreaCoverageDialog = ({ isOpen, onClose, onContinue }) => {
     <div className="modal-overlay">
       <div className="modal-content">
         <header className="modal-header">
-          <h2>Area Coverage Information</h2>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <h2>Area Coverage Information</h2>
+            <X onClick={onClose} style={{ cursor: "pointer" }} />
+          </div>
           <p>
             Before making a booking, please review the service areas, the
             available dates, and select the location for the lesson.
@@ -157,6 +161,12 @@ const AreaCoverageDialog = ({ isOpen, onClose, onContinue }) => {
           border-radius: 8px;
           overflow: hidden;
           background: white;
+          cursor: pointer;
+          transition: all 0.3s;
+        }
+        .area-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
         }
 
         .area-header {
