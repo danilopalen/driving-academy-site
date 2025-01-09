@@ -337,8 +337,11 @@ const LandingPage = () => {
               professional instructors who care about your success.
             </p>
             <div className="button-group">
-              <button className="button button-primary">
-                <Link href="/book">Book a Lesson</Link>
+              <button
+                className="button button-primary"
+                onClick={() => router.push("/book")}
+              >
+                Book a Lesson
               </button>
               {/* <button className="button button-secondary">Learn More</button> */}
             </div>
