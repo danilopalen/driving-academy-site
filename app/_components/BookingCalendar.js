@@ -8,6 +8,7 @@ const BookingCalendar = ({
   setSelectedDate,
   selectedTime,
   setSelectedTime,
+  validDays,
 }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
@@ -55,7 +56,10 @@ const BookingCalendar = ({
 
     // Check if it's Monday-Thursday
     const day = date.getDay();
-    return day >= 1 && day <= 4;
+    console.log("🚀 ~ isValidDay ~ validDays:", validDays);
+    console.log("🚀 ~ isValidDay ~ day:", day);
+    // return day >= 1 && day <= 4;
+    return validDays.includes(day);
   };
 
   const generateCalendar = () => {
@@ -105,7 +109,7 @@ const BookingCalendar = ({
         }
       }
       setSelectedDate(date);
-      setSelectedTime(null);
+      setSelectedTime("");
       setBookingConfirmed(false);
     }
   };

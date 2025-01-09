@@ -1,13 +1,16 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import AreaModal from "../_components/AreaModal";
 import { Clock, CheckCircle, AlertCircle, Car } from "lucide-react";
 
 const Class1Page = () => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => setIsOpen(false);
-  const handleContinue = () => {
+  const handleContinue = (region) => {
     setIsOpen(false);
+    router.push(`/book?service=class-1&region=${region}`);
   };
   const handleBookNow = () => {
     setIsOpen(true);
@@ -209,7 +212,7 @@ const Class1Page = () => {
           <AreaModal
             isOpen={isOpen}
             onClose={handleClose}
-            onContinue={handleContinue}
+            onContinue={(region) => handleContinue(region)}
           />
         )}
         <header className="header">

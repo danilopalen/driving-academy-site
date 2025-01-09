@@ -1,6 +1,7 @@
 // app/api/bookings/route.ts
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { generateICSFile } from "../../lib/calendar";
 
 // Email transport configuration
 const transporter = nodemailer.createTransport({
@@ -74,6 +75,9 @@ export async function POST(request) {
     // Here you would typically validate the booking data
     // and save it to your database
 
+    // Generate calendar invite
+    const icsContent = generateICSFile(booking);
+
     // Generate and send email
     const emailContent = generateEmailContent(booking);
 
@@ -83,6 +87,19 @@ export async function POST(request) {
       subject: emailContent.subject,
       text: emailContent.text,
       html: emailContent.html,
+      attachments: [
+        {
+          filename: "lesson-booking.ics",
+          content: icsContent,
+          contentType: "text/calendar",
+        },
+      ],
+      alternatives: [
+        {
+          contentType: "text/calendar; method=REQUEST",
+          content: icsContent,
+        },
+      ],
     });
 
     return NextResponse.json({

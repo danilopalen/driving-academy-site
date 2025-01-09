@@ -1,42 +1,53 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import { usePathname } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import centralcbd from "../../public/images/centralcbd.png";
 import centraleast from "../../public/images/centraleast.png";
 import centralwest from "../../public/images/centralwest.png";
 import eastauckland from "../../public/images/eastauckland.png";
 
+const AREAS = [
+  {
+    region: "Auckland Central West",
+    days: "Monday and Tuesday",
+    notes: "",
+    mapPlaceholder: centralwest,
+  },
+  {
+    region: "Auckland Central East",
+    days: "Thursday and Friday",
+    notes: "",
+    mapPlaceholder: centraleast,
+  },
+  {
+    region: "Auckland Central & CBD",
+    days: "Wednesday",
+    notes: "Class 1 only",
+    mapPlaceholder: centralcbd,
+  },
+  {
+    region: "East Auckland",
+    days: "Saturday and Sunday",
+    notes: "",
+    mapPlaceholder: eastauckland,
+  },
+];
 const AreaCoverageDialog = ({ isOpen, onClose, onContinue }) => {
+  const pathname = usePathname();
+  console.log("🚀 ~ AreaCoverageDialog ~ pathname:", pathname);
+  const [areas, setAreas] = useState([]);
+  const [selected, setSelected] = useState("");
   if (!isOpen) return null;
 
-  const areas = [
-    {
-      region: "Auckland Central West",
-      days: "Monday and Tuesday",
-      notes: "",
-      mapPlaceholder: centralwest,
-    },
-    {
-      region: "Auckland Central East",
-      days: "Thursday and Friday",
-      notes: "",
-      mapPlaceholder: centraleast,
-    },
-    {
-      region: "Auckland Central & CBD",
-      days: "Wednesday",
-      notes: "Class 1 only",
-      mapPlaceholder: centralcbd,
-    },
-    {
-      region: "East Auckland",
-      days: "Saturday and Sunday",
-      notes: "",
-      mapPlaceholder: eastauckland,
-    },
-  ];
+  useEffect(() => {
+    if (pathname.includes("class1") || pathname.includes("book")) {
+      setAreas(AREAS);
+    } else {
+      setAreas(AREAS.filter(({ notes }) => notes !== "Class 1 only"));
+    }
+  }, [pathname]);
 
   return (
     <div className="modal-overlay">
@@ -44,14 +55,21 @@ const AreaCoverageDialog = ({ isOpen, onClose, onContinue }) => {
         <header className="modal-header">
           <h2>Area Coverage Information</h2>
           <p>
-            Please check our service areas and available days before making a
-            booking
+            Before making a booking, please review the service areas, the
+            available dates, and select the location for the lesson.
           </p>
         </header>
 
         <div className="areas-grid">
           {areas.map((area, index) => (
-            <div key={index} className="area-card">
+            <div
+              key={index}
+              className="area-card"
+              onClick={() => setSelected(area.region)}
+              style={{
+                border: area?.region === selected ? "1px solid #2563eb" : "",
+              }}
+            >
               <div className="area-header">
                 <h3>{area.region}</h3>
                 <p className="availability">Available: {area.days}</p>
@@ -75,8 +93,14 @@ const AreaCoverageDialog = ({ isOpen, onClose, onContinue }) => {
             Close
           </button>
 
-          <button onClick={onContinue} className="button button-primary">
-            <Link href="/book">Continue to Booking</Link>
+          <button
+            disabled={!selected ? true : false}
+            onClick={() => onContinue(selected)}
+            className={
+              !selected ? "button button-disabled" : "button button-primary"
+            }
+          >
+            Continue to Booking
           </button>
         </footer>
       </div>
@@ -149,6 +173,7 @@ const AreaCoverageDialog = ({ isOpen, onClose, onContinue }) => {
           font-size: 14px;
           color: #666;
           margin: 0;
+          font-weight: 700;
         }
 
         .note {
@@ -191,7 +216,11 @@ const AreaCoverageDialog = ({ isOpen, onClose, onContinue }) => {
           background-color: #f5f5f5;
           color: #333;
         }
-
+        .button-disabled {
+          backgroundColor: #cccccc;
+          color: #fff;
+          cursor: not-allowed !important
+        }
         .button-secondary:hover {
           background-color: #e0e0e0;
         }

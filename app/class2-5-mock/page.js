@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import AreaModal from "../_components/AreaModal";
 import {
   Clock,
@@ -10,10 +11,12 @@ import {
 } from "lucide-react";
 
 const Class2To5MockTest = () => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => setIsOpen(false);
-  const handleContinue = () => {
+  const handleContinue = (region) => {
     setIsOpen(false);
+    router.push(`/book?service=class-2-5-mock&region=${region}`);
   };
   const handleBookNow = () => {
     setIsOpen(true);
@@ -195,7 +198,7 @@ const Class2To5MockTest = () => {
           <AreaModal
             isOpen={isOpen}
             onClose={handleClose}
-            onContinue={handleContinue}
+            onContinue={(region) => handleContinue(region)}
           />
         )}
         <header className="header">
