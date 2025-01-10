@@ -17,11 +17,14 @@ const transporter = nodemailer.createTransport({
 
 // Email template function
 function generateEmailContent(booking) {
-  // const formattedDate = new Intl.DateTimeFormat("en-NZ", {
-  //   day: "2-digit",
-  //   month: "2-digit",
-  //   year: "numeric",
-  // }).format(booking.date);
+  const formattedDate = new Intl.DateTimeFormat("en-NZ", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  }).format(new Date(booking.date.replace("00:00:00", `${booking.time}:00`)));
+  const [date, time] = formattedDate.split(", ");
   return {
     subject: `Booking Confirmation - ${booking.service}`,
     text: `
@@ -30,8 +33,9 @@ function generateEmailContent(booking) {
       Thank you for booking a lesson with us! Here are your booking details:
 
       Lesson: ${booking.service}
-      Date: ${booking.date}
-      Time: ${booking.time}
+      Date: ${date}
+      Time: ${time}
+      Location: ${booking.address}
 
       Please arrive 5 minutes before your lesson start time.
 
@@ -51,8 +55,9 @@ function generateEmailContent(booking) {
 
         <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px;">
           <p><strong>Lesson:</strong> ${booking.service}</p>
-          <p><strong>Date:</strong> ${booking.date}</p>
-          <p><strong>Time:</strong> ${booking.time}</p>
+          <p><strong>Date:</strong> ${date}</p>
+          <p><strong>Time:</strong> ${time}</p>
+          <p><strong>Location:</strong> ${booking.address}</p>
         </div>
 
         <p><em>Please arrive 5 minutes before your lesson start time.</em></p>
@@ -80,6 +85,7 @@ export async function POST(request) {
 
     // Generate and send email
     const emailContent = generateEmailContent(booking);
+    console.log("🚀 ~ POST ~ emailContent:", emailContent.text);
 
     const info = await transporter.sendMail({
       from: `"${process.env.NEXT_PUBLIC_EMAIL_FROM_NAME}" <${process.env.NEXT_PUBLIC_EMAIL_FROM_ADDRESS}>`,

@@ -398,6 +398,25 @@ const BookingSystem = () => {
   const [services, setServices] = useState(SERVICES);
   const [validDays, setValidDays] = useState([]);
   const [acceptTerms, setAcceptTerms] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
+  const [formattedDate, setFormattedDate] = useState(undefined);
+
+  useEffect(() => {
+    if (selectedDate && selectedTime) {
+      const formattedDate = new Intl.DateTimeFormat("en-NZ", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      }).format(
+        new Date(
+          selectedDate.toString().replace("00:00:00", `${selectedTime}:00`)
+        )
+      );
+      setFormattedDate(formattedDate);
+    }
+  }, [selectedDate, selectedTime]);
 
   useEffect(() => {
     if (region?.trim() === "Auckland Central") {
@@ -444,6 +463,7 @@ const BookingSystem = () => {
     };
     console.log("Booking submitted:", bookingData);
     writeUserData(bookingData);
+    setStep(5);
 
     try {
       const response = await fetch("/api/bookings", {
@@ -457,7 +477,7 @@ const BookingSystem = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setStep(5);
+        setEmailSent(true);
       } else {
         throw new Error(data.message || "Failed to process booking");
       }
@@ -787,19 +807,20 @@ const BookingSystem = () => {
       </div>
 
       <div style={styles.confirmationBox}>
-        Thank you for your booking. We have sent a confirmation email with all
-        the details.
+        {`Thank you for your booking. We ${
+          emailSent ? "have sent" : "will send"
+        } a confirmation email with all
+        the details.`}
       </div>
 
       <div style={styles.bookingDetails}>
         <h3 style={{ fontWeight: "bold", marginBottom: "12px" }}>
           Booking Details:
         </h3>
-        <p>Service: {services.find((s) => s.id === selectedOption)?.name}</p>
-        <p>Date: {selectedDate.toString()}</p>
-        <p>Time: {selectedTime}</p>
-        <p>Name: {formData.name}</p>
-        <p>Email: {formData.email}</p>
+        <p>Lesson: {services.find((s) => s.id === selectedOption)?.name}</p>
+        <p>Date: {formattedDate?.split(", ")?.[0]}</p>
+        <p>Time: {formattedDate?.split(", ")?.[1]}</p>
+        <p>Location: {formData.address}</p>
       </div>
     </div>
   );
