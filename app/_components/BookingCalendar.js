@@ -76,8 +76,12 @@ const BookingCalendar = ({
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
 
-  const isDateInFeb1ToFeb6 = (date) => {
-    return date >= new Date(2025, 1, 1) && date <= new Date(2025, 1, 6);
+  const isBlockedDate = (date) => {
+    const isFromJan22ToJan23 =
+      date >= new Date(2025, 0, 22) && date <= new Date(2025, 0, 23);
+    const isFromFeb1ToFeb6 =
+      date >= new Date(2025, 1, 1) && date <= new Date(2025, 1, 6);
+    return isFromJan22ToJan23 || isFromFeb1ToFeb6;
   };
 
   const isValidDay = (date) => {
@@ -89,7 +93,7 @@ const BookingCalendar = ({
       return false;
     }
 
-    if (isDateInFeb1ToFeb6(date)) {
+    if (isBlockedDate(date)) {
       return false;
     }
 
