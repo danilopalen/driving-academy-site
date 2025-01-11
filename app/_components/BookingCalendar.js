@@ -76,12 +76,20 @@ const BookingCalendar = ({
     return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   };
 
+  const isDateInFeb1ToFeb6 = (date) => {
+    return date >= new Date(2025, 1, 1) && date <= new Date(2025, 1, 6);
+  };
+
   const isValidDay = (date) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
     // Check if date is in the past
     if (date < today) {
+      return false;
+    }
+
+    if (isDateInFeb1ToFeb6(date)) {
       return false;
     }
 
