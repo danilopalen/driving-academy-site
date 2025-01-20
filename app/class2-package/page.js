@@ -244,6 +244,15 @@ const Class2Package = () => {
             transform: translateY(-1px);
             box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
           }
+
+          .info-notice {
+            background: #f0f7ff;
+            border-left: 4px solid #2563eb;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+            color: #1e40af;
+          }
         `}
       </style>
 
@@ -339,6 +348,9 @@ const Class2Package = () => {
               </div>
             </div>
 
+            <p className="info-notice">
+              Door-to-door service included to meet your needs.
+            </p>
             <div className="warning-notice">
               <p>
                 Our driving school does not have any class 2 to class 5

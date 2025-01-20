@@ -228,10 +228,11 @@ const Class1TwoHour = () => {
           </h1>
           <p className="description">
             Our 2-hour Class 1 lessons are for learner, restricted and full
-            licence holders. Our 2-hour driving lesson has proven to be the most
-            productive time period for a driving lesson. The lessons are adapted
-            to each driver's needs and are for developing skills, preparing for
-            driver's licence tests and staying safe on the road.
+            licence holders. Lessons are conducted on a dual controlled vehicle.
+            Our 2-hour driving lesson has proven to be the most productive time
+            period for a driving lesson. The lessons are adapted to each
+            driver's needs and are for developing skills, preparing for driver's
+            licence tests and staying safe on the road.
           </p>
           <div className="highlight">
             Extended practical driving time allows for comprehensive skill

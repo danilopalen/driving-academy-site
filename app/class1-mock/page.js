@@ -194,10 +194,10 @@ const MockTestClass1 = () => {
           <p className="description">
             Our 1-hour Class 1 mock tests are for someone who is preparing for
             their Class 1 restricted, full or overseas conversion licence test.
-            During the mock driving test, our instructor will carry the driving
-            assessment grid and assess your driving skills exactly like how a
-            driving testing officer conducts a driving test at the testing
-            station.
+            Mock tests are conducted on a dual controlled vehicle. During the
+            mock driving test, our instructor will carry the driving assessment
+            grid and assess your driving skills exactly like how a driving
+            testing officer conducts a driving test at the testing station.
           </p>
         </header>
 

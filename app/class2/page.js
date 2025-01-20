@@ -233,9 +233,10 @@ const Class2Page = () => {
               style={{ float: "left", marginRight: "10px" }}
             />
             <p style={{ color: "#4b5563" }}>
-              For Class 2 to Class 5 driving lessons, we can organise a truck at
-              an additional cost, or you can supply your truck for the lesson.
-              Please contact us to learn more.
+              For Class 2 driving lessons, we can organise a truck at an
+              additional cost which includes door to door service. Otherwise,
+              you can supply your truck for the lesson. Please contact us to
+              learn more
             </p>
           </div>
         </header>

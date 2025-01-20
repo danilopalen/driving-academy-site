@@ -233,6 +233,16 @@ const Class1Package = () => {
             transform: translateY(-1px);
             box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
           }
+
+
+          .info-notice {
+            background: #f0f7ff;
+            border-left: 4px solid #2563eb;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+            color: #1e40af;
+          }
         `}
       </style>
 
@@ -251,9 +261,10 @@ const Class1Package = () => {
           </h1>
           <p className="description">
             Our 1-hour Class 1 lessons are for learner, restricted and full
-            licence holders. The lessons are adapted to each driver's needs and
-            are for developing skills, preparing for driver's licence tests and
-            staying safe on the road.
+            licence holders. Lessons are conducted on a dual controlled vehicle.
+            The lessons are adapted to each driver's needs and are for
+            developing skills, preparing for driver's licence tests and staying
+            safe on the road.
           </p>
         </header>
 
@@ -310,6 +321,10 @@ const Class1Package = () => {
                 <DollarSign size={20} />
                 <span>Total Savings: $40</span>
               </div>
+
+              <p className="info-notice">
+                Door-to-door service included to meet your needs.
+              </p>
             </div>
 
             <div className="warning-notice">

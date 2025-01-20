@@ -90,6 +90,7 @@ export async function POST(request) {
     const info = await transporter.sendMail({
       from: `"${process.env.NEXT_PUBLIC_EMAIL_FROM_NAME}" <${process.env.NEXT_PUBLIC_EMAIL_FROM_ADDRESS}>`,
       to: booking.email,
+      cc: process.env.NEXT_PUBLIC_EMAIL_FROM_ADDRESS,
       subject: emailContent.subject,
       text: emailContent.text,
       html: emailContent.html,

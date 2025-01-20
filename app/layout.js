@@ -3,7 +3,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { useState } from "react";
-import logo from "../public/images/logo2.png";
+import logo from "../public/images/logo3.jpeg";
 import Image from "next/image";
 import Link from "next/link";
 

@@ -356,7 +356,8 @@ const LandingPage = () => {
               <Shield className="feature-icon" size={32} />
               <h3 className="feature-title">Safety First</h3>
               <p className="feature-text">
-                Comprehensive safety training and modern vehicles
+                A comprehensive and safe training on a dual controlled vehicle –
+                Dual controlled vehicle only available for Class 1
               </p>
             </div>
             <div className="feature-card">

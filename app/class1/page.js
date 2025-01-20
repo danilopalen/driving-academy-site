@@ -222,9 +222,10 @@ const Class1Page = () => {
           </h1>
           <p className="description">
             Our 1 hour Class 1 lessons are for learner, restricted and full
-            licence holders. The lessons are adapted to each driver's needs and
-            are for developing skills, preparing for driver's licence tests and
-            staying safe on the road.
+            licence holders. Lessons are conducted on a dual controlled vehicle.
+            The lessons are adapted to each driver's needs and are for
+            developing skills, preparing for driver's licence tests and staying
+            safe on the road.
           </p>
         </header>
 
