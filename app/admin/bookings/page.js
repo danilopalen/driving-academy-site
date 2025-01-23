@@ -125,9 +125,46 @@ const BookingsPage = () => {
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this booking?")) {
       const bookingRef = ref(db, "bookings/" + id);
-      remove(bookingRef).then(() =>
-        setBookings(bookings.filter((booking) => booking.id !== id))
-      );
+      remove(bookingRef).then(async () => {
+        setBookings(bookings.filter((booking) => booking.id !== id));
+        const bookingData = bookings.find((booking) => booking.id === id);
+        const date = new Intl.DateTimeFormat("en-NZ", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "numeric",
+          minute: "numeric",
+        }).format(
+          new Date(
+            bookingData.date.replace("00:00:00", `${bookingData.time}:00`)
+          )
+        );
+        const cancelData = {
+          service: bookingData.service,
+          date,
+          name: bookingData.name,
+          email: bookingData.email,
+        };
+        try {
+          const response = await fetch("/api/cancel", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(cancelData),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            setEmailSent(true);
+          } else {
+            throw new Error(data.message || "Failed to send cancel request");
+          }
+        } catch (error) {
+          console.log("🚀 ~ handleSubmit ~ error:", error.message);
+        }
+      });
     }
   };
 
