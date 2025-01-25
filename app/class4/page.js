@@ -233,8 +233,8 @@ const Class4Page = () => {
           <div className="notice">
             <AlertCircle className="notice-icon" size={24} />
             <p className="notice-text">
-              For Class 2 to Class 5 driving lessons, we can organise a truck at
-              an additional cost, or you can supply your truck for the lesson.
+              For class 4 driving lessons, we can organise a truck at an
+              additional cost or you can supply your truck for the lesson.
               Please contact us to learn more.
             </p>
           </div>
@@ -258,10 +258,10 @@ const Class4Page = () => {
                   style={{ float: "left", marginRight: "10px" }}
                 />
                 <p>
-                  Our driving school does not have any class 2 to class 5
-                  vehicles. We can organise a truck hire at an additional cost,
-                  or you can supply your truck for the lesson. There is no extra
-                  charge for those who can supply their truck.
+                  Our driving school does not have any class 4 vehicles. We can
+                  organise a truck hire at an additional cost, or you can supply
+                  your truck for the lesson. There is no extra charge for those
+                  who can supply their truck
                 </p>
               </div>
             </div>

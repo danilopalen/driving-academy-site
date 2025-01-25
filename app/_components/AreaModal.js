@@ -84,8 +84,8 @@ const AreaCoverageDialog = ({ isOpen, onClose, onContinue }) => {
                   src={area.mapPlaceholder}
                   alt={`Map of ${area.region}`}
                   className="area-map"
-                  width="150"
-                  height="150"
+                  width="300"
+                  height="300"
                 />
               </div>
             </div>

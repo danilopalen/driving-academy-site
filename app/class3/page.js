@@ -233,9 +233,9 @@ const Class3Page = () => {
           <div className="notice">
             <AlertCircle className="notice-icon" size={24} />
             <p className="notice-text">
-              For Class 2 to Class 5 driving lessons, we can organise a truck at
-              an additional cost, or you can supply your truck for the lesson.
-              Please contact us to learn more.
+              We are unable to organise a truck hire for class 3 driving
+              lessons. You can only conduct class 3 driving lessons in your own
+              truck.
             </p>
           </div>
         </header>
@@ -244,10 +244,6 @@ const Class3Page = () => {
           <div className="card">
             <div className="pricing-card">
               <h3 className="pricing-header">Pricing Options</h3>
-              <div className="price-info">
-                <span>Standard Price (1 hour)</span>
-                <span className="price">$125</span>
-              </div>
               <div className="price-info">
                 <span>With Your Own Truck</span>
                 <span className="price">$95</span>
@@ -258,9 +254,10 @@ const Class3Page = () => {
                   style={{ float: "left", marginRight: "10px" }}
                 />
                 <p>
-                  Our driving school does not have any class 2 to class 5
-                  vehicles. We can organise a truck hire at an additional cost,
-                  or you can supply your truck for the lesson.
+                  Our driving school does not have any class 3 vehicles. Class 3
+                  driving lessons can only be conducted in your own truck. There
+                  is no additional charge for those who can supply their truck.
+                  Please contact us to learn more.
                 </p>
               </div>
             </div>

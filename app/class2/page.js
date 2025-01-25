@@ -233,10 +233,15 @@ const Class2Page = () => {
               style={{ float: "left", marginRight: "10px" }}
             />
             <p style={{ color: "#4b5563" }}>
-              For Class 2 driving lessons, we can organise a truck at an
-              additional cost which includes door to door service. Otherwise,
-              you can supply your truck for the lesson. Please contact us to
-              learn more
+              For class 2 driving lessons, we can organise a truck at an
+              additional cost or you can supply your truck for the lesson.
+              Please contact us to learn more.
+            </p>
+            <p style={{ color: "#4b5563" }}>
+              Our driving school does not have any class 2 vehicles. We can
+              organise a truck hire at an additional cost, or you can supply
+              your truck for the lesson. There is no extra charge for those who
+              can supply their truck
             </p>
           </div>
         </header>

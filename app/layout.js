@@ -221,8 +221,17 @@ export default function RootLayout({ children }) {
                     <a href="/class1-mock" className="nav-item">
                       Class 1 Mock Test
                     </a>
-                    <a href="/class2-5-mock" className="nav-item">
-                      Class 2-5 Mock Test
+                    <a href="/class2-mock" className="nav-item">
+                      Class 2 Mock Test
+                    </a>
+                    <a href="/class3-mock" className="nav-item">
+                      Class 3 Mock Test
+                    </a>
+                    <a href="/class4-mock" className="nav-item">
+                      Class 4 Mock Test
+                    </a>
+                    <a href="/class5-mock" className="nav-item">
+                      Class 5 Mock Test
                     </a>
                   </div>
                 </div>
