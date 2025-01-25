@@ -208,10 +208,6 @@ const MockTestClass5 = () => {
                 Pricing
               </h3>
               <div className="price-info">
-                <span>Mock Test (1 hour)</span>
-                <span className="price">$140</span>
-              </div>
-              <div className="price-info">
                 <span>
                   Mock Test (1 hour - For those who can supply a truck)
                 </span>
