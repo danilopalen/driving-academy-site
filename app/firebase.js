@@ -21,6 +21,6 @@ export const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
 
-export function writeUserData(bookingData) {
-  set(ref(db, "bookings/" + Date.now()), bookingData);
+export function writeUserData(bookingData, id) {
+  set(ref(db, "bookings/" + id), bookingData);
 }
