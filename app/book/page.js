@@ -503,10 +503,18 @@ const BookingSystem = () => {
       time: selectedTime,
       ...formData,
     };
-    console.log("Booking submitted:", bookingData);
     writeUserData(bookingData);
     setStep(5);
 
+    console.log("window.gtag", window.gtag);
+    if (window.gtag) {
+      window.gtag("event", "conversion", {
+        send_to: "AW-11554448291/6iAYCMjkpYMaEKPHy4Ur",
+        transaction_id: "",
+        value: services.find((s) => s.id === selectedOption)?.amount,
+        currency: "NZD",
+      });
+    }
     try {
       const response = await fetch("/api/bookings", {
         method: "POST",

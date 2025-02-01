@@ -85,7 +85,6 @@ export async function POST(request) {
 
     // Generate and send email
     const emailContent = generateEmailContent(booking);
-    console.log("🚀 ~ POST ~ emailContent:", emailContent.text);
 
     const info = await transporter.sendMail({
       from: `"${process.env.NEXT_PUBLIC_EMAIL_FROM_NAME}" <${process.env.NEXT_PUBLIC_EMAIL_FROM_ADDRESS}>`,

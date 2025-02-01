@@ -22,7 +22,6 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
     if (!formData.email || !formData.password) return;
     const auth = getAuth(app);
     signInWithEmailAndPassword(auth, formData.email, formData.password)

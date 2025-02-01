@@ -6,6 +6,7 @@ import { useState } from "react";
 import logo from "../public/images/logo3.jpeg";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,6 +22,21 @@ export default function RootLayout({ children }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <html lang="en">
+      <head>
+        <title>JDM Driving Academy</title>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11554448291"
+        ></Script>
+        <Script id="google-analytics">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {dataLayer.push(arguments)}
+          gtag('js', new Date());
+          gtag('config','AW-11554448291');
+        `}
+        </Script>
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <div>
           <style>

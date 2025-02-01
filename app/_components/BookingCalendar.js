@@ -43,7 +43,6 @@ const BookingCalendar = ({
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
   const [data, setData] = useState(undefined);
-  console.log("🚀 ~ data:", data);
   useEffect(() => {
     onValue(bookingCountRef, (snapshot) => {
       const arr = [];
@@ -128,10 +127,8 @@ const BookingCalendar = ({
 
   const handleDateSelect = (date) => {
     if (date && isValidDay(date)) {
-      console.log("🚀 ~ handleDateSelect ~ date:", date.toString());
       if (data && data.length > 0) {
         const bookings = data.filter((el) => el.date === date.toString());
-        console.log("🚀 ~ handleDateSelect ~ bookings:", bookings);
         if (bookings.length > 0) {
           setTimeSlots((prev) => {
             const newTimeSlots = prev.map((time) => {
@@ -140,7 +137,6 @@ const BookingCalendar = ({
               }
               return { ...time, disabled: false };
             });
-            console.log("🚀 ~ newTimeSlots ~ newTimeSlots:", newTimeSlots);
             return newTimeSlots;
           });
         } else {

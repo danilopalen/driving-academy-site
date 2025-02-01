@@ -37,7 +37,6 @@ const AREAS = [
 ];
 const AreaCoverageDialog = ({ isOpen, onClose, onContinue }) => {
   const pathname = usePathname();
-  console.log("🚀 ~ AreaCoverageDialog ~ pathname:", pathname);
   const [areas, setAreas] = useState([]);
   const [selected, setSelected] = useState("");
   if (!isOpen) return null;
