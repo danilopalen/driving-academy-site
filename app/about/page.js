@@ -4,7 +4,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { Clock, Shield, Heart, Phone, Award, Car, Mail } from "lucide-react";
 import Image from "next/image";
-import Yuta from "../../public/images/IMG_8689.jpg";
+import Yuta from "../../public/images/Yuta.jpg";
 
 const AboutPage = () => {
   const router = useRouter();

@@ -91,6 +91,10 @@ const AreaCoverageDialog = ({ isOpen, onClose, onContinue }) => {
           ))}
         </div>
 
+        <div className="info-notice">
+          If the location and/or time doesn’t suit you, please contact us on 020
+          4175 3791. We may be able to cover the areas that aren’t listed above.
+        </div>
         <footer className="modal-footer">
           <button onClick={onClose} className="button button-secondary">
             Close
@@ -109,6 +113,15 @@ const AreaCoverageDialog = ({ isOpen, onClose, onContinue }) => {
       </div>
 
       <style>{`
+          .info-notice {
+            background: #f0f7ff;
+            border-left: 4px solid #2563eb;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+            color: #1e40af;
+          }
+
         .modal-overlay {
           position: fixed;
           top: 0;
