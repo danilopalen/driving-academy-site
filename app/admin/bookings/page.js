@@ -127,17 +127,16 @@ const BookingsPage = () => {
       remove(bookingRef).then(async () => {
         setBookings(bookings.filter((booking) => booking.id !== id));
         const bookingData = bookings.find((booking) => booking.id === id);
-        const date = new Intl.DateTimeFormat("en-NZ", {
+        const date = new Date(
+          bookingData.date.replace("00:00:00", `${bookingData.time}:00`)
+        ).toLocaleString("en-NZ", {
+          timeZone: "Pacific/Auckland",
           day: "2-digit",
           month: "2-digit",
           year: "numeric",
           hour: "numeric",
           minute: "numeric",
-        }).format(
-          new Date(
-            bookingData.date.replace("00:00:00", `${bookingData.time}:00`)
-          )
-        );
+        });
         const cancelData = {
           service: bookingData.service,
           date,
@@ -194,17 +193,16 @@ const BookingsPage = () => {
               <tr key={booking.id}>
                 <td style={styles.td}>{booking.name}</td>
                 <td style={styles.td}>
-                  {new Intl.DateTimeFormat("en-NZ", {
+                  {new Date(
+                    booking.date.replace("00:00:00", `${booking.time}:00`)
+                  ).toLocaleString("en-NZ", {
+                    timeZone: "Pacific/Auckland",
                     day: "2-digit",
                     month: "2-digit",
                     year: "numeric",
                     hour: "numeric",
                     minute: "numeric",
-                  }).format(
-                    new Date(
-                      booking.date.replace("00:00:00", `${booking.time}:00`)
-                    )
-                  )}
+                  })}
                 </td>
                 <td style={styles.td}>{booking.service}</td>
                 <td style={styles.td}>

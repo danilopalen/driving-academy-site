@@ -15,11 +15,11 @@ export function generateICSFile(booking) {
     summary: `${booking.service} with Yuta`,
     description: `Lesson booking for ${booking.name}`,
     location: booking.location,
+    timezone: "Pacific/Auckland", // Key point for NZ timezone
     organizer: {
       name: "Learning Center",
       email: process.env.NEXT_PUBLIC_EMAIL_FROM_ADDRESS,
     },
-    timezone: "UTC",
   });
 
   return calendar.toString();

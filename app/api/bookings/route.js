@@ -17,14 +17,18 @@ const transporter = nodemailer.createTransport({
 
 // Email template function
 function generateEmailContent(booking) {
-  const formattedDate = new Intl.DateTimeFormat("en-NZ", {
+  const dateTime = new Date(
+    booking.date.replace("00:00:00", `${booking.time}:00`)
+  );
+  const localeString = dateTime.toLocaleString("en-NZ", {
+    timeZone: "Pacific/Auckland",
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
     hour: "numeric",
     minute: "numeric",
-  }).format(new Date(booking.date.replace("00:00:00", `${booking.time}:00`)));
-  const [date, time] = formattedDate.split(", ");
+  });
+  const [date, time] = localeString.split(", ");
   return {
     subject: `Booking Confirmation - ${booking.service}`,
     text: `

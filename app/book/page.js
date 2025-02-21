@@ -445,18 +445,18 @@ const BookingSystem = () => {
 
   useEffect(() => {
     if (selectedDate && selectedTime) {
-      const formattedDate = new Intl.DateTimeFormat("en-NZ", {
+      const dateTime = new Date(
+        selectedDate.toString().replace("00:00:00", `${selectedTime}:00`)
+      );
+      const localeString = dateTime.toLocaleString("en-NZ", {
+        timeZone: "Pacific/Auckland",
         day: "2-digit",
         month: "2-digit",
         year: "numeric",
         hour: "numeric",
         minute: "numeric",
-      }).format(
-        new Date(
-          selectedDate.toString().replace("00:00:00", `${selectedTime}:00`)
-        )
-      );
-      setFormattedDate(formattedDate);
+      });
+      setFormattedDate(localeString);
     }
   }, [selectedDate, selectedTime]);
 
