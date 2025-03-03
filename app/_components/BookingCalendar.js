@@ -76,11 +76,11 @@ const BookingCalendar = ({
   };
 
   const isBlockedDate = (date) => {
-    const isFromJan22ToJan23 =
-      date >= new Date(2025, 0, 22) && date <= new Date(2025, 0, 23);
-    const isFromFeb26ToFeb28 =
-      date >= new Date(2025, 1, 26) && date <= new Date(2025, 1, 28);
-    return isFromJan22ToJan23 || isFromFeb26ToFeb28;
+    const isFromMarch5To6 =
+      date >= new Date(2025, 2, 5) && date <= new Date(2025, 2, 6);
+    const isFromMarch8To9 =
+      date >= new Date(2025, 2, 8) && date <= new Date(2025, 2, 9);
+    return isFromMarch5To6 || isFromMarch8To9;
   };
 
   const isValidDay = (date) => {
