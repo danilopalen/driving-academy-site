@@ -80,8 +80,13 @@ const BookingCalendar = ({
       date >= new Date(2025, 2, 5) && date <= new Date(2025, 2, 6);
     const isFromMarch8To10 =
       date >= new Date(2025, 2, 8) && date <= new Date(2025, 2, 10);
+    const isFromMarch12To13 =
+      date >= new Date(2025, 2, 12) && date <= new Date(2025, 2, 13);
     return (
-      isFromMarch5To6 || isFromMarch8To10 || date === new Date(2025, 2, 15)
+      isFromMarch5To6 ||
+      isFromMarch8To10 ||
+      isFromMarch12To13 ||
+      date === new Date(2025, 2, 15)
     );
   };
 
