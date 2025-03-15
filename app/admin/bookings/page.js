@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { ref, onValue, remove } from "firebase/database";
 import { app, db } from "../../firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import DateSubmissionForm from "@/app/_components/DateSubmissionForm";
 const bookingCountRef = ref(db, "bookings/");
 const auth = getAuth(app);
 const BookingsPage = () => {
@@ -44,7 +45,7 @@ const BookingsPage = () => {
   const styles = {
     container: {
       padding: "20px",
-      height: "100vh",
+      minHeight: "100vh",
       backgroundColor: "#fff",
       margin: "0 auto",
       fontFamily:
@@ -226,6 +227,8 @@ const BookingsPage = () => {
       ) : (
         <div style={styles.noBookings}>No bookings found</div>
       )}
+
+      <DateSubmissionForm />
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ref, onValue } from "firebase/database";
 import { db } from "../firebase";
 const bookingCountRef = ref(db, "bookings/");
+const blockedDatesRef = ref(db, "blockedDates/");
 const WEEKDAYTIME = [
   { time: "07:00", timeLabel: "07:00 AM", disabled: false },
   { time: "08:00", timeLabel: "08:00 AM", disabled: false },
@@ -43,6 +44,7 @@ const BookingCalendar = ({
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
   const [data, setData] = useState(undefined);
+  const [blockedDates, setBlockedDates] = useState([]);
   useEffect(() => {
     onValue(bookingCountRef, (snapshot) => {
       const arr = [];
@@ -54,6 +56,18 @@ const BookingCalendar = ({
         }
       }
       setData(arr);
+    });
+
+    onValue(blockedDatesRef, (snapshot) => {
+      const arr = [];
+      const values = snapshot.val();
+      for (const key in values) {
+        if (Object.prototype.hasOwnProperty.call(values, key)) {
+          const element = values[key];
+          arr.push({ ...element, id: key });
+        }
+      }
+      setBlockedDates(arr.map(({ date }) => date));
     });
   }, []);
 
@@ -76,18 +90,13 @@ const BookingCalendar = ({
   };
 
   const isBlockedDate = (date) => {
-    const isFromMarch5To6 =
-      date >= new Date(2025, 2, 5) && date <= new Date(2025, 2, 6);
-    const isFromMarch8To10 =
-      date >= new Date(2025, 2, 8) && date <= new Date(2025, 2, 10);
-    const isFromMarch12To13 =
-      date >= new Date(2025, 2, 12) && date <= new Date(2025, 2, 13);
-    return (
-      isFromMarch5To6 ||
-      isFromMarch8To10 ||
-      isFromMarch12To13 ||
-      date === new Date(2025, 2, 15)
-    );
+    return blockedDates.some((blockedDate) => {
+      const [year, month, day] = blockedDate.split("-");
+      return (
+        new Date(Number(year), Number(month) - 1, Number(day)).getTime() ===
+        date.getTime()
+      );
+    });
   };
 
   const isValidDay = (date) => {

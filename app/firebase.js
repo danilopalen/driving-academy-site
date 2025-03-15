@@ -24,3 +24,7 @@ export const db = getDatabase(app);
 export function writeUserData(bookingData, id) {
   set(ref(db, "bookings/" + id), bookingData);
 }
+
+export function writeBlockedDatesData(blockedDate, id) {
+  set(ref(db, "blockedDates/" + id), blockedDate);
+}
