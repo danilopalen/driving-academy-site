@@ -59,6 +59,7 @@ const styles = {
     width: "100%",
     height: "100%",
     objectFit: "contain",
+    imageOrientation: "none",
   },
   badge: {
     position: "absolute",
