@@ -24,24 +24,24 @@ const AREAS = [
     notes: "",
     mapPlaceholder: centralwest,
   },
-  {
-    region: "Auckland Central East",
-    days: "Thursday and Friday",
-    notes: "",
-    mapPlaceholder: centraleast,
-  },
-  {
-    region: "Auckland Central & CBD",
-    days: "Wednesday",
-    notes: "Class 1 only",
-    mapPlaceholder: centralcbd,
-  },
-  {
-    region: "East Auckland",
-    days: "Saturday and Sunday",
-    notes: "",
-    mapPlaceholder: eastauckland,
-  },
+  // {
+  //   region: "Auckland Central East",
+  //   days: "Thursday and Friday",
+  //   notes: "",
+  //   mapPlaceholder: centraleast,
+  // },
+  // {
+  //   region: "Auckland Central & CBD",
+  //   days: "Wednesday",
+  //   notes: "Class 1 only",
+  //   mapPlaceholder: centralcbd,
+  // },
+  // {
+  //   region: "East Auckland",
+  //   days: "Saturday and Sunday",
+  //   notes: "",
+  //   mapPlaceholder: eastauckland,
+  // },
   {
     region: "East and South Auckland",
     days: "Wednesday, Friday and Sunday",
