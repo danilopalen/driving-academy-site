@@ -5,14 +5,22 @@ import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import centralcbd from "../../public/images/centralcbd.png";
 import centraleast from "../../public/images/centraleast.png";
-import centralwest from "../../public/images/centralwest.png";
+import centralwest from "../../public/images/centralwest2.png";
+import northshore from "../../public/images/northshore.png";
 import eastauckland from "../../public/images/eastauckland.png";
+import eastandsouth from "../../public/images/eastandsouth.png";
 import { X } from "lucide-react";
 
 const AREAS = [
   {
+    region: "North Shore",
+    days: "Thursday",
+    notes: "",
+    mapPlaceholder: northshore,
+  },
+  {
     region: "Auckland Central West",
-    days: "Monday and Tuesday",
+    days: "Monday, Tuesday and Saturday",
     notes: "",
     mapPlaceholder: centralwest,
   },
@@ -33,6 +41,12 @@ const AREAS = [
     days: "Saturday and Sunday",
     notes: "",
     mapPlaceholder: eastauckland,
+  },
+  {
+    region: "East and South Auckland",
+    days: "Wednesday, Friday and Sunday",
+    notes: "",
+    mapPlaceholder: eastandsouth,
   },
 ];
 const AreaCoverageDialog = ({ isOpen, onClose, onContinue }) => {

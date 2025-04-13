@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import AreaModal from "../_components/AreaModal";
 import { Clock, CheckCircle, AlertCircle, Car } from "lucide-react";
+import HeroCarousel from "../_components/HeroCarousel";
 
 const Class1Page = () => {
   const router = useRouter();
@@ -53,7 +54,6 @@ const Class1Page = () => {
           .description {
             font-size: 1.25rem;
             color: #4b5563;
-            margin-bottom: 2rem;
             line-height: 1.6;
           }
 
@@ -227,6 +227,7 @@ const Class1Page = () => {
             developing skills, preparing for driver's licence tests and staying
             safe on the road.
           </p>
+          <HeroCarousel />
         </header>
 
         <div className="content-grid">

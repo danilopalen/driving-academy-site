@@ -466,11 +466,16 @@ const BookingSystem = () => {
       setSelectedOption("class-1");
       setValidDays([3]);
     } else {
+      console.log("🚀 ~ useEffect ~ region?.trim:", region?.trim());
       setServices(SERVICES);
       if (region?.trim() === "Auckland Central West") {
-        setValidDays([1, 2]);
+        setValidDays([1, 2, 6]);
       } else if (region?.trim() === "Auckland Central East") {
         setValidDays([4, 5]);
+      } else if (region?.trim() === "North Shore") {
+        setValidDays([2]);
+      } else if (region?.trim() === "East and South Auckland") {
+        setValidDays([3, 5, 0]);
       } else {
         setValidDays([0, 6]);
       }
