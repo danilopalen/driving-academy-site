@@ -200,7 +200,7 @@ const HeroCarousel = () => {
       licenseType: "Class D License | March 2025",
       quote:
         "The instructors were patient and thorough. I went from being terrified of driving to feeling completely confident on the road!",
-      badge: "PASSED FIRST TRY",
+      badge: "Our Successful students",
     },
     {
       id: 2,
@@ -209,7 +209,7 @@ const HeroCarousel = () => {
       licenseType: "Class D License | February 2025",
       quote:
         "The structured curriculum and hands-on practice made all the difference. I aced my driving test on the first attempt!",
-      badge: "PASSED FIRST TRY",
+      badge: "Our Successful students",
     },
   ];
 

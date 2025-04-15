@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import centralcbd from "../../public/images/centralcbd.png";
 import centraleast from "../../public/images/centraleast.png";
-import centralwest from "../../public/images/centralwest2.png";
-import northshore from "../../public/images/northshore.png";
+import centralwest from "../../public/images/CentralAndWestAuckland.png";
+import northshore from "../../public/images/North_Shore.png";
 import eastauckland from "../../public/images/eastauckland.png";
-import eastandsouth from "../../public/images/eastandsouth.png";
+import eastandsouth from "../../public/images/EastAndSouthAuckland.png";
 import { X } from "lucide-react";
 
 const AREAS = [
