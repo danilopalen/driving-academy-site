@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import student1 from "../../public/images/student1.jpeg";
 import student2 from "../../public/images/student2.jpeg";
+import student3 from "../../public/images/student3.jpeg";
 import Image from "next/image";
 
 // Define styles with standard CSS
@@ -200,7 +201,7 @@ const HeroCarousel = () => {
       licenseType: "Class D License | March 2025",
       quote:
         "The instructors were patient and thorough. I went from being terrified of driving to feeling completely confident on the road!",
-      badge: "Our Successful students",
+      badge: "Our successful students",
     },
     {
       id: 2,
@@ -209,7 +210,16 @@ const HeroCarousel = () => {
       licenseType: "Class D License | February 2025",
       quote:
         "The structured curriculum and hands-on practice made all the difference. I aced my driving test on the first attempt!",
-      badge: "Our Successful students",
+      badge: "Our successful students",
+    },
+    {
+      id: 3,
+      imageUrl: student3,
+      name: "Michael Chen",
+      licenseType: "Class D License | February 2025",
+      quote:
+        "The structured curriculum and hands-on practice made all the difference. I aced my driving test on the first attempt!",
+      badge: "Our successful students",
     },
   ];
 
