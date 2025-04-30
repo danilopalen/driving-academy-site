@@ -473,7 +473,7 @@ const BookingSystem = () => {
       } else if (region?.trim() === "Auckland Central East") {
         setValidDays([4, 5]);
       } else if (region?.trim() === "North Shore") {
-        setValidDays([2]);
+        setValidDays([4]);
       } else if (region?.trim() === "East and South Auckland") {
         setValidDays([3, 5, 0]);
       } else {
