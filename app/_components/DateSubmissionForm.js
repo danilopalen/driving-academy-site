@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import moment from "moment";
 import { ref, onValue, remove } from "firebase/database";
 import { db } from "../firebase";
 import { writeBlockedDatesData } from "../firebase";
@@ -26,10 +27,20 @@ const DateSubmissionForm = () => {
       for (const key in values) {
         if (Object.prototype.hasOwnProperty.call(values, key)) {
           const element = values[key];
-          arr.push({ ...element, id: key });
+          const todayDate = new Date().toISOString().slice(0, 10);
+          if (
+            element.date !== todayDate &&
+            moment(element.date).isBefore(moment())
+          ) {
+            const blockedDatesRef = ref(db, "blockedDates/" + key);
+            remove(blockedDatesRef)
+              .then((res) => console.log("deleted: ", key, element.date))
+              .catch((err) => console.log("error: ", err));
+          } else {
+            arr.push({ ...element, id: key });
+          }
         }
       }
-      console.log("🚀 ~ onValue ~ arr:", arr);
       setSubmittedDates(arr);
       setLoading(false);
     });
