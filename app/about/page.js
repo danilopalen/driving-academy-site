@@ -312,8 +312,8 @@ const AboutPage = () => {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <p className="feature-text">Weekdays: 7 AM - 8 PM</p>
-                  <p className="feature-text">Weekends: 9 AM - 8 PM</p>
+                  <p className="feature-text">Weekdays: Closed</p>
+                  <p className="feature-text">Weekends: 9 AM - 5 PM</p>
                 </div>
               </div>
             </div>

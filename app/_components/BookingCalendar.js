@@ -30,9 +30,6 @@ const WEEKENDTIME = [
   { time: "15:00", timeLabel: "03:00 PM", disabled: false },
   { time: "16:00", timeLabel: "04:00 PM", disabled: false },
   { time: "17:00", timeLabel: "05:00 PM", disabled: false },
-  { time: "18:00", timeLabel: "06:00 PM", disabled: false },
-  { time: "19:00", timeLabel: "07:00 PM", disabled: false },
-  { time: "20:00", timeLabel: "08:00 PM", disabled: false },
 ];
 const BookingCalendar = ({
   selectedDate,

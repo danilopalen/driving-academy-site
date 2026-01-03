@@ -14,13 +14,13 @@ import { X } from "lucide-react";
 const AREAS = [
   {
     region: "North Shore",
-    days: "Thursday",
+    days: "Saturday and Sunday",
     notes: "",
     mapPlaceholder: northshore,
   },
   {
     region: "Auckland Central West",
-    days: "Monday, Tuesday and Saturday",
+    days: "Saturday and Sunday",
     notes: "",
     mapPlaceholder: centralwest,
   },
@@ -44,7 +44,7 @@ const AREAS = [
   // },
   {
     region: "East and South Auckland",
-    days: "Wednesday, Friday and Sunday",
+    days: "Saturday and Sunday",
     notes: "",
     mapPlaceholder: eastandsouth,
   },
